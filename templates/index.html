@@ -1,0 +1,176 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rifa de 4 cifras</title>
+        <style>
+            body {
+                background-image: url('/static/fondo.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Centra verticalmente */
+                align-items: center; /* Centra horizontalmente */
+                height: 100vh;
+                margin: 0;
+                
+            }
+            h1 {
+                
+                text-align: center;
+                margin-top: -30px;
+                margin-bottom: 20px;
+                font-size: 45px; /* Tamaño de fuente ajustado */
+                font-weight: bold; /* Hace que todo el texto del cuerpo aparezca en negrilla */
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Cambia el tipo de letra para todo el cuerpo del documento */
+                font-style: italic; /* Hace que todo el texto del cuerpo aparezca en cursiva */
+                display: flex;
+                align-items: center; /* Centra verticalmente */
+                color: #007bff; /* Color azul */
+                
+            }
+            h1 img {
+                margin-right: 30px; /* Espacio entre el logo y el texto */
+                margin-left: 30px; /* Espacio entre el logo y el texto */
+                max-height: 150px; /* Altura máxima del logo */
+                margin-top: 20px;
+            }
+
+            .logo {
+            width: 250px;
+            height: auto;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+                margin-top: -50px;
+            }
+            .input-container {
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+                border-radius: 20px; /* Esquinas más redondeadas */
+                display: flex;
+                flex-direction: column; /* Para centrar los elementos verticalmente */
+                align-items: center; /* Para centrar los elementos horizontalmente */
+                justify-content: center; /* Centra verticalmente */
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+            }
+            .input-container input[type="text"],
+            .input-container input[type="tel"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 20px; /* Esquinas más redondeadas */
+                box-sizing: border-box;
+            }
+            .input-container input[type="submit"] {
+                width: 50%;
+                padding: 10px;
+                border: none;
+                border-radius: 30px; /* Esquinas más redondeadas */
+                background-color: #007bff; /* Color azul */
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin-top: 10px; /* Espacio entre el último campo y el botón */
+            }
+            .input-container input[type="submit"]:hover {
+                background-color: #0056b3; /* Cambia el color al hacer hover */
+            }
+            .image-container {
+                margin-right: 20px;
+                border-radius: 20px; /* Esquinas más redondeadas */
+                overflow: hidden; /* Oculta cualquier parte de la imagen que sobresalga */
+            }
+            img {
+                max-width: 300px;
+                height: auto;
+                border-radius: 20px; /* Esquinas más redondeadas */
+            }
+            form {
+                text-align: left;
+                width: 100%; /* Para asegurarse de que el formulario se ajuste al ancho del contenedor */
+            }
+            label {
+                margin-bottom: 10px; /* Añadir un espacio entre la etiqueta y el campo de entrada */
+            }
+            .registro-info {
+                color: white;
+                font-size: 20px;
+                margin-top: 10px;
+                font-weight: bold; /* Hace que todo el texto del cuerpo aparezca en negrilla */
+                font-family: Arial, sans-serif; /* Cambia el tipo de letra para todo el cuerpo del documento */
+                font-style: italic; /* Hace que todo el texto del cuerpo aparezca en cursiva */
+
+            }
+            .progress-bar {
+                width: 50%;
+                background-color: #f3f3f3;
+                border-radius: 10px;
+                margin-bottom: -2px;
+            }
+            .progress-bar-fill {
+                height: 30px;
+                background-color: #007bff;
+                border-radius: 10px;
+                width: 0%;
+                transition: width 0.5s ease-in-out;
+            }
+            .reload-button {
+                margin-top: 10px;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .reload-button:hover {
+                background-color: #45a049;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1>
+            <img src="/static/logo1.png" alt="Logo izquierdo" class="logo" style="margin-right: 120px;">
+            <span style="margin-right: 10px;">PS5 - PlayStation 5</span>
+            <img src="/static/logo2.png" alt="Logo derecho" class="logo" style="margin-left: 120px;">
+        </h1>
+        
+        <div class="container">
+            <div class="image-container">
+                <img src="/static/foto.jpg" alt="Foto de la rifa">
+            </div>
+            <div class="input-container">
+                <form action="/" method="post" id="registroForm" style="text-align: center;">
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required style="margin-top: 5px;"><br>
+
+                    <label for="telefono">Teléfono:</label><br>
+                    <input type="tel" id="telefono" name="telefono" pattern="[0-9]+" required style="margin-top: 5px;"><br><br>
+                    <input type="submit" value="Enviar">
+                    <div style="color: rgb(0, 0, 0); font-size: 10px; margin-top: 40px; margin-bottom: 5px; text-align: center;">
+                        Copyright &copy; 2024 BMR Sorteos 
+                    </div>  
+                    <div style="color: rgb(0, 0, 0); font-size: 10px; margin-bottom: 5px; text-align: center;">
+                        Todos los derechos reservados
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+        <div class="registro-info" id="registroInfo">Porcentaje de registros completados: 0%</div>
+        <!-- <button id="reloadButton" class="reload-button" onclick="reiniciarPorcentaje()">Recargar Datos</button> -->
+
+        <!-- Importar archivo JavaScript -->
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+    </html>

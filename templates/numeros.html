@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Disponibles</title>
+    <style>
+        body {
+            background-image: url('/static/fondo.jpg'); /* Cambia 'fondo.jpg' por la ruta de tu imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            color: white;
+            text-align: center;
+        }
+        .numeros-container {
+            overflow-y: auto; /* Agrega scroll vertical */
+            max-height: 60vh; /* Altura máxima del contenedor con scroll */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            background-image: url('/static/ticket.png'); /* Cambia 'ticket.png' por la ruta de tu imagen de ticket */
+            background-size: contain;
+            background-repeat: no-repeat;   
+            background-position: center;
+            padding: 40px; /* Ajuste del tamaño del relleno */
+            margin: -60px 15px; /* Ajuste del margen */
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            width: 100px; /* Ajuste del ancho del boleto */
+            height: 150px; /* Ajuste de la altura del boleto */
+            font-size: 24px; /* Ajuste del tamaño de la fuente */
+            line-height: 150px; /* Ajuste de la altura de la línea */
+            text-align: center;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 50px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Números Disponibles</h1>
+    <h2>Números Disponibles:</h2>
+    <div class="numeros-container">
+        <ul>
+            {% for numero in numeros_disponibles %}
+                <li>{{ "%04d"|format(numero) }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/" class="button">Inicio</a>
+</body>
+</html>
+
+

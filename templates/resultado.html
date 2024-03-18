@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <style>
+        body {
+            background-image: url('/static/fondo.jpg'); /* Cambia 'fondo.jpg' por la ruta de tu imagen de fondo */
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: -5px; /* Ajuste del margen superior */
+            margin-bottom: 50px; /* Ajuste del margen inferior */
+            font-style: italic; /* Hace que todo el texto del cuerpo aparezca en cursiva */
+            font-size: 50px;
+        }
+        h1 img {
+            margin-right: 30px; /* Espacio entre el logo y el texto */
+            margin-left: 30px; /* Espacio entre el logo y el texto */
+            max-height: 80px; /* Altura máxima del logo */
+            vertical-align: middle; /* Alinea la mitad del logo verticalmente */
+        }
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-top: 10px; /* Ajuste del margen superior */
+            
+            font-style: italic; /* Hace que todo el texto del cuerpo aparezca en cursiva */
+            font-size: 32px;
+        }
+        p {
+            color: #007bff;
+            text-align: center;
+            font-size: 24px;
+            margin-top: -50px; /* Elimina el margen superior */
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        li {
+            background-image: url('/static/ticket.png'); /* Cambia 'ticket.png' por la ruta de tu imagen de ticket */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 20px;
+            margin: -60px 15px; /* Ajuste del margen */
+            color: white;
+            font-weight: bold;
+            display: inline-block; /* Para mostrar los boletos uno al lado del otro */
+            width: 150px; /* Ancho de cada boleto */
+            height: 200px; /* Altura de cada boleto */
+            font-size: 36px; /* Tamaño del texto dentro de los boletos */
+            line-height: 200px; /* Altura de línea igual a la altura del boleto para centrar el texto verticalmente */
+            text-align: center;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <img src="/static/logo1.png" alt="Logo izquierdo">
+        R1F4 PlayStation 5
+        <img src="/static/logo2.png" alt="Logo derecho">
+    </h1>
+    
+    <p>Números asignados:</p>
+    <ul>
+        {% for numero in numeros_rifa %}
+            <li>{{ numero | zfill(4) }}</li>
+        {% endfor %}
+    </ul>
+    <h2>¡ Mucha suerte {{nombre}} !</h2>
+    <div style="font-size: 12px; margin-top: -20px; margin-bottom: -5px; letter-spacing: 1px; color: rgba(239, 247, 5, 0.808); text-decoration: underline;">
+         Juega con la LOT3R1A DE MEDELLIN una vez se venda la TOTALIDAD de las boletas </div>
+
+    <a href="/" class="button">Regresar</a>
+</body>
+</html>

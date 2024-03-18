@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa de 4 cifras</title>
+    <style>
+        body {
+            background-image: url('/static/fondo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 50px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 45px; /* Tamaño de fuente ajustado */
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            display: flex;
+            align-items: center; /* Alinea verticalmente los elementos del título */
+            margin: -10px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+        .input-container input[type="text"],
+        .input-container input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+        .input-container input[type="submit"] {
+            display: none;
+        }
+        .image-container {
+            margin-right: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 20px;
+        }
+        form {
+            text-align: left;
+            width: 100%;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        .registro-info {
+            color: white;
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+        }
+        .progress-bar {
+            width: 50%;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            margin-bottom: -2px;
+        }
+        .progress-bar-fill {
+            height: 30px;
+            background-color: #007bff;
+            border-radius: 10px;
+            width: 100%; /* Cambia el ancho a 100% para que la barra esté llena */
+            transition: width 0.5s ease-in-out;
+        }
+        .logo {
+            
+            margin-right: 20px; /* Espacio entre el logo y el texto */
+            margin-left: 20px; /* Espacio entre el logo y el texto */
+            max-height: 150px; /* Altura máxima del logo */
+            width: 200px;
+            height: auto;
+        }
+        .success-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-left: 20px;
+        }
+        .copyright {
+            color: rgb(0, 0, 0);
+            font-size: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .back-button { /* Estilo del botón de regresar */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px; /* Espacio entre el texto y el botón */
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+            <img src="/static/logo1.png" alt="Logo izquierdo" class="logo" style="margin-right: 120px;">
+            <span style="margin-right: 10px;">PS5 - PlayStation 5</span>
+            <img src="/static/logo2.png" alt="Logo derecho" class="logo" style="margin-left: 120px;">
+        </h1>
+    <div class="container">
+        <div class="image-container">
+            <img src="/static/foto.jpg" alt="Foto de la rifa">
+        </div>
+        <div class="success-container">
+            <img src="/static/logo.png" alt="Logo de la rifa" class="logo">
+            <h2>Éxito Total</h2>
+            <p>Mucha suerte</p>
+            <div class="copyright">
+                Copyright &copy; 2024 BMR Sorteos <br>
+                Todos los derechos reservados
+            </div>
+        </div>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-bar-fill" style="width: 100%;"></div> <!-- Cambia el ancho a 100% para que la barra esté llena -->
+    </div>
+    <div class="registro-info" id="registroInfo">100.00% de meta alcanzada</div> <!-- Agrega el texto -->
+    <a href="/" class="back-button">Inicio</a> <!-- Agrega el botón de regresar -->
+</body>
+</html>
