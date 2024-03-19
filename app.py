@@ -10,10 +10,19 @@ DATABASE = 'rifas.db'
 MAX_REGISTROS = 10  # Máximo de registros permitidos
 N_BOLETAS = 10
 MIN_DIGITOS = 0 
-MAX_DIGITOS = 99
+MAX_DIGITOS = 99      
+T_NUMEROS = MAX_DIGITOS + 1
 
 
-
+# Función para contar el número de registros en el archivo Excel
+def contar_registros_excel():
+    try:
+        wb = load_workbook('participantes.xlsx')
+        ws = wb.active
+        return ws.max_row - 1  # Restamos 1 para excluir la fila de encabezado
+    except FileNotFoundError:
+        return 0
+    
 # Obtener los números asignados del archivo Excel
 def obtener_numeros_asignados():
     numeros_asignados = set()
@@ -32,7 +41,7 @@ def obtener_numeros_asignados():
 @app.route('/numeros')
 def mostrar_numeros_disponibles():
     numeros_asignados = obtener_numeros_asignados()
-    numeros_disponibles = [num for num in range(0, MAX_REGISTROS) if num not in numeros_asignados]
+    numeros_disponibles = [num for num in range(0, T_NUMEROS) if num not in numeros_asignados]
     return render_template('numeros.html', numeros_disponibles=numeros_disponibles)
 
 
@@ -71,7 +80,7 @@ def obtener_numeros_asignados():
 
 def numeros_unicos_disponibles(cantidad):
     numeros_asignados = obtener_numeros_asignados()
-    numeros_disponibles = set(range(100)) - set(numeros_asignados)
+    numeros_disponibles = set(range(T_NUMEROS)) - set(numeros_asignados)
     return len(numeros_disponibles) >= cantidad
 
 
@@ -103,13 +112,12 @@ def obtener_numero_registros_excel():
         return 0
 
 def obtener_porcentaje_registrados():
-    numero_registrados_db = obtener_numero_registros_db()
     numero_registrados_excel = obtener_numero_registros_excel()
-    total_registros = numero_registrados_db + numero_registrados_excel
-    if total_registros == 0:
+    if numero_registrados_excel == 0:
         return 0
     else:
-        return (total_registros / 10000) * 100  # Calcula el porcentaje en relación con 10000 registros
+        return (numero_registrados_excel / MAX_REGISTROS) * 100  # Ajusta MAX_REGISTROS a la cantidad máxima permitida de registros
+
 
 
 def guardar_en_excel(participantes):
@@ -151,6 +159,7 @@ def obtener_numeros_asignados():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    
     if request.method == 'POST':
         nombre = request.form['nombre']
         telefono = request.form['telefono']
@@ -171,18 +180,19 @@ def index():
             
             # Calcular el porcentaje de registros completados
             porcentaje_registrados = obtener_porcentaje_registrados()
+
         
-
-            # Obtener el número de registros en el archivo Excel
-            numero_registrados_excel = obtener_numero_registros_excel()
-
-            # Calcular el número total de registros
-            total_registros = numero_registrados_excel
-
-            # Obtener el porcentaje de registros en comparación con el máximo de registros permitidos
-            porcentaje_registrados = (total_registros / MAX_REGISTROS) * 100 if MAX_REGISTROS > 0 else 0
-            
+        
         guardar_en_excel([{'nombre': nombre, 'telefono': telefono, 'numeros': numeros_rifa}])
+        
+        # Obtener el número de registros en el archivo Excel
+        numero_registrados_excel = obtener_numero_registros_excel()
+
+        # Calcular el número total de registros
+        total_registros =  numero_registrados_excel
+
+        # Calcular el porcentaje de registros en comparación con el máximo de registros permitidos
+        porcentaje_registrados = (total_registros / MAX_REGISTROS) * 100 if MAX_REGISTROS > 0 else 0
         
         return render_template('resultado.html', nombre=nombre, numeros_rifa=numeros_rifa, porcentaje_registrados=porcentaje_registrados)
     else:
@@ -192,10 +202,12 @@ def index():
         # Calcular el número total de registros
         total_registros =  numero_registrados_excel
 
-        # Obtener el porcentaje de registros en comparación con el máximo de registros permitidos
+        # Calcular el porcentaje de registros en comparación con el máximo de registros permitidos
         porcentaje_registrados = (total_registros / MAX_REGISTROS) * 100 if MAX_REGISTROS > 0 else 0
         
-        return render_template('index.html', porcentaje_registrados=porcentaje_registrados)
+        return render_template('index.html', porcentaje_registrados=obtener_porcentaje_registrados())
+
+
 
 def reiniciar_numeros_unicos():
     with get_db() as db:
@@ -243,4 +255,4 @@ def exito():
     return render_template('exito.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
